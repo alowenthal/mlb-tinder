@@ -73,12 +73,12 @@ function Card({id, available, setAvailable, mySelections, setMySelections}) {
   function handleYes() {
     setMySelections(mySelections => [...mySelections, id]);
 
-    const updatedAvailable = available.filter((obj) => obj.id !== id);
+    const updatedAvailable = available.filter((obj) => obj.gsx$playerid.$t !== id);
     setAvailable(updatedAvailable);
   }
 
   function handleNo() {
-    const updatedAvailable = available.filter((obj) => obj.id !== id);
+    const updatedAvailable = available.filter((obj) => obj.gsx$playerid.$t !== id);
     setAvailable(updatedAvailable);
   }
 
