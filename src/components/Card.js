@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { PortalWithState } from 'react-portal';
 
 const CardContainer = styled.div`
   display: inline-block;
@@ -20,7 +21,6 @@ const CardContainer = styled.div`
 
 const CardMedia = styled.img`
   max-width: 100%;
-  pointer-events: none;
 `;
 
 const CardMeta = styled.div`
@@ -54,7 +54,7 @@ const CardButton = styled.button`
   margin: 1rem;
 `;
 
-function Card({id, available, setAvailable, mySelections, setMySelections}) {
+function Card({id, available, setAvailable, mySelections, setMySelections, setPortalState, portalContext, setPortalContext}) {
   const [info, setInfo] = useState({});
 
   useEffect(() => {
@@ -82,9 +82,14 @@ function Card({id, available, setAvailable, mySelections, setMySelections}) {
     setAvailable(updatedAvailable);
   }
 
+  function handleOpen() {
+    setPortalState(true);
+    setPortalContext(id);
+  }
+
   return (
     <CardContainer>
-      <CardMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_240,h_382,g_auto,c_fill,q_auto:best/v1/people/${id}/action/vertical/current`} />
+      <CardMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_240,h_382,g_auto,c_fill,q_auto:best/v1/people/${id}/action/vertical/current`} onClick={handleOpen} />
       <CardMeta>
         <CardTitle>{info.title}</CardTitle>
         <CardSecondary>{info.secondary}</CardSecondary>
