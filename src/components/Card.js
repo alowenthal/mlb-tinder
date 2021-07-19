@@ -54,7 +54,7 @@ const CardButton = styled.button`
   margin: 1rem;
 `;
 
-function Card({id, available, setAvailable, type, wildCard, mySelections, setMySelections}) {
+function Card({id, available, setAvailable, mySelections, setMySelections}) {
   const [info, setInfo] = useState({});
 
   useEffect(() => {
