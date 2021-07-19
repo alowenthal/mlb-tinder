@@ -13,18 +13,16 @@ const CardsContainer = styled.div`
 `;
 
 function Cards({ available, setAvailable, mySelections, setMySelections }) {
-  // const players = available.map((player) => (
-  //   <Card 
-  //     key={''} 
-  //     id={player.gsx$playerid ? player.gsx$playerid.$t : ''} 
-  //     available={available} 
-  //     setAvailable={setAvailable}
-  //     mySelections={mySelections} 
-  //     setMySelections={setMySelections} 
-  //   />)
-  // );
-
-  const players = available.map((player) => console.log('***', player.gsx$playerid));
+  const players = available.map((player) => (
+    <Card 
+      key={player.gsx$playerid.$t}
+      id={player.gsx$playerid.$t} 
+      available={available} 
+      setAvailable={setAvailable}
+      mySelections={mySelections} 
+      setMySelections={setMySelections} 
+    />)
+  );
 
   return (
     <CardsContainer>

@@ -15,7 +15,7 @@ const AppContainer = styled.div`
 `;
 
 function App() {
-  const [available, setAvailable] = useState([...players]);
+  const [available, setAvailable] = useState([]);
   const [mySelections, setMySelections] = useState(["","","","",""]);
 
   useEffect(() => {
