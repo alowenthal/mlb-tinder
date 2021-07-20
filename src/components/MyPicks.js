@@ -45,13 +45,6 @@ const PickContainer = styled.div`
 
 
 function MyPicks({ mySelections }) {
-
-	let id;
-
-	mySelections.forEach(function (selection) {
-		id = selection;
-	});
-
 	// This repitition is pretty gross and should be refactored
   return (
     <MP_Container>
