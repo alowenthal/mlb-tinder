@@ -63,9 +63,14 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
       .then(data => {
         const person = data.people[0];
         setInfo({
-          title: person.useName + " " + person.lastName,
-          secondary: person.currentTeam.name,
-          position: person.primaryPosition.name
+          name: person.useName + " " + person.lastName,
+          team: person.currentTeam.name,
+          position: person.primaryPosition.name,
+          number: person.primaryNumber,
+          country: person.birthCountry,
+          height: person.height,
+          weight: person.weight,
+          age: person.age
         });
       });
   }, [info]);
@@ -84,15 +89,33 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
 
   function handleOpen() {
     setPortalState(true);
-    setPortalContext(id);
+    setPortalContext({
+      id,
+      name: info.name,
+      team: info.team,
+      position: info.position,
+      number: info.number,
+      country: info.country,
+      height: info.height,
+      weight: info.weight,
+      age: info.age
+    });
+  }
+
+  function handleError(ev) {
+    ev.target.src = 'https://www.mlbstatic.com/team-logos/share/mlb.jpg';
   }
 
   return (
     <CardContainer>
-      <CardMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_240,h_382,g_auto,c_fill,q_auto:best/v1/people/${id}/action/vertical/current`} onClick={handleOpen} />
+      <CardMedia 
+        src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_240,h_382,g_auto,c_fill,q_auto:best/v1/people/${id}/action/vertical/current`}
+        onClick={handleOpen} 
+        onError={handleError}
+      />
       <CardMeta>
-        <CardTitle>{info.title}</CardTitle>
-        <CardSecondary>{info.secondary}</CardSecondary>
+        <CardTitle>{info.name}</CardTitle>
+        <CardSecondary>{info.team}</CardSecondary>
         <CardPosition>{info.position}</CardPosition>
       </CardMeta>
       <CardActions>
