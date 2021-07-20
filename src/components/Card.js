@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { PortalWithState } from 'react-portal';
+import TinderCard from 'react-tinder-card'
 
 const CardContainer = styled.div`
   display: inline-block;
-  width: 90vw;
-  max-width: 400px;
+  width: 100vw;
   height: 70vh;
   background: #FFFFFF;
   padding-bottom: 40px;
@@ -21,6 +21,7 @@ const CardContainer = styled.div`
 
 const CardMedia = styled.img`
   max-width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 `;
 
 const CardMeta = styled.div`
@@ -80,11 +81,14 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
 
     const updatedAvailable = available.filter((obj) => obj.gsx$playerid.$t !== id);
     setAvailable(updatedAvailable);
+    console.log(available)
   }
 
   function handleNo() {
     const updatedAvailable = available.filter((obj) => obj.gsx$playerid.$t !== id);
     setAvailable(updatedAvailable);
+    console.log(available)
+
   }
 
   function handleOpen() {
@@ -106,23 +110,39 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
     ev.target.src = 'https://www.mlbstatic.com/team-logos/share/mlb.jpg';
   }
 
+  const onSwipe = (direction) => {
+    console.log('You swiped: ' + direction);
+
+    if (direction === 'left') {
+      handleNo();
+    } else {
+      handleYes();
+    }
+  }
+
+  const onCardLeftScreen = (myIdentifier) => {
+    console.log(myIdentifier + ' left the screen');
+  }
+
   return (
-    <CardContainer>
-      <CardMedia 
-        src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_240,h_382,g_auto,c_fill,q_auto:best/v1/people/${id}/action/vertical/current`}
-        onClick={handleOpen} 
-        onError={handleError}
-      />
-      <CardMeta>
-        <CardTitle>{info.name}</CardTitle>
-        <CardSecondary>{info.team}</CardSecondary>
-        <CardPosition>{info.position}</CardPosition>
-      </CardMeta>
-      <CardActions>
-        <CardButton onClick={handleNo}>No</CardButton>
-        <CardButton onClick={handleYes}>Yes</CardButton>
-      </CardActions>
-    </CardContainer>
+      <CardContainer>
+        <TinderCard onSwipe={onSwipe}>
+          <CardMedia 
+            src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_240,h_382,g_auto,c_fill,q_auto:best/v1/people/${id}/action/vertical/current`}
+            onClick={handleOpen} 
+            onError={handleError}
+          />
+          <CardMeta>
+            <CardTitle>{info.name}</CardTitle>
+            <CardSecondary>{info.team}</CardSecondary>
+            <CardPosition>{info.position}</CardPosition>
+          </CardMeta>
+          <CardActions>
+            <CardButton onClick={handleNo}>No</CardButton>
+            <CardButton onClick={handleYes}>Yes</CardButton>
+          </CardActions>
+        </TinderCard>
+      </CardContainer>
   );
 }
 
