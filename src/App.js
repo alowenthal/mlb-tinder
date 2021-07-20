@@ -19,7 +19,7 @@ function App() {
   const [available, setAvailable] = useState([]);
   const [mySelections, setMySelections] = useState(["","","","",""]);
   const [portalState, setPortalState] = useState(false);
-  const [portalContext, setPortalContext] = useState('');
+  const [portalContext, setPortalContext] = useState({});
 
   useEffect(() => {
     fetch("https://spreadsheets.google.com/feeds/list/1uA4DvmZ3UXF7K9rjS1L1RKaQd8LE298EEZ-oUvm1WO4/od6/public/values?alt=json")
