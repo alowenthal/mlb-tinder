@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const MP_Container = styled.div`
-  text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 1rem;
 `;
 
 const PickMedia = styled.img`
 	border-radius: 50%;
-  width: 118px;
+  width: 60px;
   pointer-events: none;
   display: inline-block;
   border: 1px solid #002366;
@@ -17,41 +20,41 @@ const PickMedia = styled.img`
 
   @-webkit-keyframes reveal {
     0%   {width: 0px;}
-    100% { width: 118px;}
+    100% { width: 60px;}
 	}
 
 	@keyframes reveal {
 	    0%   {width: 0px;}
-	    100% { width: 118px;}
+	    100% { width: 60px;}
 	}
 `;
 
 const EmptyPick = styled.div`
 	border-radius: 50%;
-	height: 120px;
-	width: 120px;
+	height: 60px;
+	width: 60px;
 	background-color: #A9A9A9;
-  display: inline-block;
+	display: inline-block;
 `;
 
 const PickContainer = styled.div`
-	height: 120px;
-	width: 120px;
+	height: 60px;
+	width: 60px;
 	display: inline-block;
-  text-align: center;
-  margin-right: 8px;
-  margin-top: 12px;
+	text-align: center;
+	margin-right: 8px;
+	margin-top: 12px;
 `
 
 function MyPicks({ mySelections }) {
 
 	let picks = [];
 
-	for (let i = 0; i <= 5 ; i++) {
+	for (let i = 0; i <= 4 ; i++) {
 		if (mySelections[i]) {
 			picks.push(
 				<PickContainer key={i}>
-					<PickMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:silo:curr[…]max/w_120,q_auto:best/v1/people/${mySelections[i]}/headshot/silo/current`} />
+					<PickMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:silo:curr[…]max/w_60,q_auto:best/v1/people/${mySelections[i]}/headshot/silo/current`} />
 				</PickContainer>
 			)
 		} else {
