@@ -13,6 +13,7 @@ const AppContainer = styled.div`
   flex-direction: column;
   position: relative;
   transition: opacity 0.1s ease-in-out;
+  background: #333333;
 `;
 
 function App() {

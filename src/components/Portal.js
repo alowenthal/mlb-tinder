@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import Videos from './Videos';
 
 const Dialog = styled.dialog`
     width: 100vw;
@@ -69,6 +70,12 @@ const PlayerDetails = styled.div`
     font-weight: 700;
 `;
 
+const VideoContainer = styled.section`
+    padding: 1rem;
+    color: #ffffff;
+    width: 100%
+`;
+
 
 function Portal({ portalState, setPortalState, portalContext, setPortalContext }) {
 
@@ -80,6 +87,7 @@ function Portal({ portalState, setPortalState, portalContext, setPortalContext }
         id,
         name,
         team,
+        teamID,
         position,
         number,
         country,
@@ -94,14 +102,17 @@ function Portal({ portalState, setPortalState, portalContext, setPortalContext }
             <Close onClick={handleClose}>Close</Close>
         </Hero>
         <PlayerInfo>
-            <Headshot src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:silo:current.png,u_team:119:fill:spot,fl_relative,w_1.0/r_max/w_120,q_auto:best/v1/people/${id}/headshot/silo/current`} />
+            <Headshot src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:silo:current.png,u_team:${teamID}:fill:spot,fl_relative,w_1.0/r_max/w_120,q_auto:best/v1/people/${id}/headshot/silo/current`} />
             <PlayerMeta>
                 <PlayerTeam>{team}</PlayerTeam>
                 <PlayerName>{name} #{number}</PlayerName>
                 <PlayerDetails>{position} | {height} | {weight} lbs</PlayerDetails>
             </PlayerMeta>
         </PlayerInfo>
-        
+        <VideoContainer className="Videos">
+            <h2>Videos</h2>
+            <Videos id={id} />
+        </VideoContainer>
     </Dialog>,
     document.getElementById('portal-root')
   );

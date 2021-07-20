@@ -7,9 +7,9 @@ const CardContainer = styled.div`
   width: 90vw;
   max-width: 400px;
   height: 70vh;
-  background: #FFFFFF;
+  background: #333333;
+  color: #ffffff;
   padding-bottom: 40px;
-  border-radius: 8px;
   overflow: hidden;
   position: absolute;
   will-change: transform;
@@ -19,8 +19,14 @@ const CardContainer = styled.div`
   cursor: grab;
 `;
 
-const CardMedia = styled.img`
-  max-width: 100%;
+const CardMedia = styled.div`
+  background-image: url(${props => props.img});
+  background-position: center;
+  background-size: cover;
+  display: block;
+  height: 300px;
+  width: 100%;
+  border-radius: 6px;
 `;
 
 const CardMeta = styled.div`
@@ -62,15 +68,22 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
       .then(response => response.json())
       .then(data => {
         const person = data.people[0];
+        const player = available.filter((obj) => obj.gsx$playerid.$t === id)[0];
         setInfo({
           name: person.useName + " " + person.lastName,
           team: person.currentTeam.name,
+          teamID: person.currentTeam.id,
           position: person.primaryPosition.name,
           number: person.primaryNumber,
           country: person.birthCountry,
           height: person.height,
           weight: person.weight,
-          age: person.age
+          age: person.age,
+          funImage: player.gsx$imagesrc.$t,
+          walkUpMusic: {
+            name: player.gsx$walkupsong.$t,
+            src: player.gsx$walkupsongsrc.$t,
+          }
         });
       });
   }, [info]);
@@ -93,12 +106,15 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
       id,
       name: info.name,
       team: info.team,
+      teamID: info.teamID,
       position: info.position,
       number: info.number,
       country: info.country,
       height: info.height,
       weight: info.weight,
-      age: info.age
+      age: info.age,
+      walkUpMusicName: info.walkUpMusic.name,
+      walkUpMusicSRC: info.walkUpMusic.src
     });
   }
 
@@ -109,9 +125,8 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
   return (
     <CardContainer>
       <CardMedia 
-        src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_240,h_382,g_auto,c_fill,q_auto:best/v1/people/${id}/action/vertical/current`}
-        onClick={handleOpen} 
-        onError={handleError}
+        img={info.funImage}
+        onClick={handleOpen}
       />
       <CardMeta>
         <CardTitle>{info.name}</CardTitle>
