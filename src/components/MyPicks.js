@@ -50,13 +50,13 @@ function MyPicks({ mySelections }) {
 	for (let i = 0; i <= 5 ; i++) {
 		if (mySelections[i]) {
 			picks.push(
-				<PickContainer>
+				<PickContainer key={i}>
 					<PickMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:silo:curr[…]max/w_120,q_auto:best/v1/people/${mySelections[i]}/headshot/silo/current`} />
 				</PickContainer>
 			)
 		} else {
 			picks.push(
-				<PickContainer>
+				<PickContainer key={i}>
 					<EmptyPick />
 				</PickContainer>
 			)
@@ -65,9 +65,7 @@ function MyPicks({ mySelections }) {
 
   return (
     <MP_Container>
-    
     	{picks}
-
     </MP_Container>
   );
 }
