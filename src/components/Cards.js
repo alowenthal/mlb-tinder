@@ -12,7 +12,7 @@ const CardsContainer = styled.div`
   z-index: 1;
 `;
 
-function Cards({ available, setAvailable, mySelections, setMySelections }) {
+function Cards({ available, setAvailable, mySelections, setMySelections, setPortalState, portalContext, setPortalContext }) {
   const players = available.map((player) => (
     <Card 
       key={player.gsx$playerid.$t}
@@ -21,6 +21,9 @@ function Cards({ available, setAvailable, mySelections, setMySelections }) {
       setAvailable={setAvailable}
       mySelections={mySelections} 
       setMySelections={setMySelections} 
+      setPortalState={setPortalState}
+      portalContext={portalContext} 
+      setPortalContext={setPortalContext}
     />)
   );
 
