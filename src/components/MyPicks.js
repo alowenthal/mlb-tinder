@@ -10,13 +10,13 @@ const MP_Container = styled.div`
 
 const PickMedia = styled.img`
 	border-radius: 50%;
-  width: 60px;
-  pointer-events: none;
-  display: inline-block;
-  border: 1px solid #002366;
+	width: 60px;
+	pointer-events: none;
+	display: inline-block;
+	border: 2px solid #AA63EA;
 
-  -webkit-animation: reveal 0.6s ease;
-  -webkit-animation-fill-mode: backwards;
+	-webkit-animation: reveal 0.6s ease;
+	-webkit-animation-fill-mode: backwards;
 
   @-webkit-keyframes reveal {
     0%   {width: 0px;}

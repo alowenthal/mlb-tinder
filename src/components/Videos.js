@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { IoPlayCircle } from 'react-icons/io5';
 
 const VideosContainer = styled.div`
 	display: flex;
@@ -26,8 +27,12 @@ const Video = styled.div`
 
 const PlayButton = styled.button`
 	position: absolute;
-	bottom: 1rem;
-	left: 1rem;
+	bottom: 0px;
+	left: 0px;
+	background: none;
+	border: none;
+	font-size: 36px;
+	color: #AA63EA;
 `;
 
 function Videos({ id }) {
@@ -46,7 +51,7 @@ function Videos({ id }) {
 		const src = vid.thumbnail.templateUrl.replace('{formatInstructions}', 't_16x9/t_w640');
 		return (
 			<Video key={i} src={src}>
-				<PlayButton>Play</PlayButton>
+				<PlayButton><IoPlayCircle /></PlayButton>
 			</Video>
 		)
 	})
