@@ -43,46 +43,30 @@ const PickContainer = styled.div`
   margin-top: 12px;
 `
 
-
 function MyPicks({ mySelections }) {
-	// This repitition is pretty gross and should be refactored
+
+	let picks = [];
+
+	for (let i = 0; i <= 5 ; i++) {
+		if (mySelections[i]) {
+			picks.push(
+				<PickContainer>
+					<PickMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:silo:curr[…]max/w_120,q_auto:best/v1/people/${mySelections[i]}/headshot/silo/current`} />
+				</PickContainer>
+			)
+		} else {
+			picks.push(
+				<PickContainer>
+					<EmptyPick />
+				</PickContainer>
+			)
+		}
+	};
+
   return (
     <MP_Container>
-
-    	<PickContainer>
-	      {mySelections.length >= 1
-	        ? <PickMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:silo:curr[…]max/w_120,q_auto:best/v1/people/${mySelections[0]}/headshot/silo/current`} />
-	        : <EmptyPick />
-	      }
-	    </PickContainer>
-
-    	<PickContainer>
-	      {mySelections.length >= 2
-	        ? <PickMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:silo:curr[…]max/w_120,q_auto:best/v1/people/${mySelections[1]}/headshot/silo/current`} />
-	        : <EmptyPick />
-	      }
-	    </PickContainer>
-
-      <PickContainer>
-	      {mySelections.length >= 3
-	        ? <PickMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:silo:curr[…]max/w_120,q_auto:best/v1/people/${mySelections[2]}/headshot/silo/current`} />
-	        : <EmptyPick />
-	      }
-	    </PickContainer>
-
-      <PickContainer>
-	      {mySelections.length >= 4
-	        ? <PickMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:silo:curr[…]max/w_120,q_auto:best/v1/people/${mySelections[3]}/headshot/silo/current`} />
-	        : <EmptyPick />
-	      }
-	    </PickContainer>
-
-      <PickContainer>
-	      {mySelections.length >= 5
-	        ? <PickMedia src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:silo:curr[…]max/w_120,q_auto:best/v1/people/${mySelections[4]}/headshot/silo/current`} />
-	        : <EmptyPick />
-	      }
-	    </PickContainer>
+    
+    	{picks}
 
     </MP_Container>
   );
