@@ -92,57 +92,54 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
   }
 
   function handleOpen() {
-    setPortalState(true);
-    setPortalContext({
-      id,
-      name: info.name,
-      team: info.team,
-      position: info.position,
-      number: info.number,
-      country: info.country,
-      height: info.height,
-      weight: info.weight,
-      age: info.age
-    });
+    // setPortalState(true);
+    // setPortalContext({
+    //   id,
+    //   name: info.name,
+    //   team: info.team,
+    //   position: info.position,
+    //   number: info.number,
+    //   country: info.country,
+    //   height: info.height,
+    //   weight: info.weight,
+    //   age: info.age
+    // });
   }
 
   function handleError(ev) {
     ev.target.src = 'https://www.mlbstatic.com/team-logos/share/mlb.jpg';
   }
 
-  const onSwipe = (direction) => {
+  function onSwipe(direction) {
     console.log('You swiped: ' + direction);
 
     if (direction === 'left') {
+      console.log(id)
       handleNo();
     } else {
       handleYes();
     }
   }
 
-  const onCardLeftScreen = (myIdentifier) => {
-    console.log(myIdentifier + ' left the screen');
-  }
-
   return (
-      <CardContainer>
-        <TinderCard onSwipe={onSwipe}>
-          <CardMedia 
-            src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_240,h_382,g_auto,c_fill,q_auto:best/v1/people/${id}/action/vertical/current`}
-            onClick={handleOpen} 
-            onError={handleError}
-          />
-          <CardMeta>
-            <CardTitle>{info.name}</CardTitle>
-            <CardSecondary>{info.team}</CardSecondary>
-            <CardPosition>{info.position}</CardPosition>
-          </CardMeta>
-          <CardActions>
-            <CardButton onClick={handleNo}>No</CardButton>
-            <CardButton onClick={handleYes}>Yes</CardButton>
-          </CardActions>
-        </TinderCard>
-      </CardContainer>
+    <CardContainer>
+      <TinderCard onSwipe={onSwipe} >
+        <CardMedia 
+          src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_240,h_382,g_auto,c_fill,q_auto:best/v1/people/${id}/action/vertical/current`}
+          onClick={handleOpen} 
+          onError={handleError}
+        />
+        <CardMeta>
+          <CardTitle>{info.name}</CardTitle>
+          <CardSecondary>{info.team}</CardSecondary>
+          <CardPosition>{info.position}</CardPosition>
+        </CardMeta>
+        <CardActions>
+          <CardButton onClick={handleNo}>No</CardButton>
+          <CardButton onClick={handleYes}>Yes</CardButton>
+        </CardActions>
+      </TinderCard>
+    </CardContainer>
   );
 }
 
