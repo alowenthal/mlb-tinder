@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import ReactAudioPlayer from 'react-audio-player';
 import { FaInstagram, FaTwitter } from 'react-icons/fa';
 import { IoCloseOutline } from 'react-icons/io5';
 import Videos from './Videos';
@@ -86,6 +87,13 @@ const Eyebrow = styled.div`
     text-transform: uppercase;
     font-size: 12px;
 `;
+
+const Eyebrow2 = styled.div`
+    color: #f1f1f1;
+    font-size: 20px;
+    font-weight: 700;
+`;
+
 const PlayerNickName = styled.div`
     font-weight: 700;
     font-size: 20px;
@@ -144,17 +152,20 @@ function Portal({ portalState, setPortalState, portalContext, setPortalContext }
         number,
         hometown,
         fun_fact,
+        walkUpMusicName,
+        walkUpMusicSRC,
         height,
         weight,
         age,
         birthday,
         twitter,
-        instagram
+        instagram,
+        gif
     } = portalContext;
 
   return ReactDOM.createPortal(
     <Dialog open={portalState}>
-        <Hero img={`https://img.mlbstatic.com/mlb-photos/image/upload/w_1000,q_100/v1/people/${id}/action/hero/current`}>
+        <Hero img={gif}>
             <Close onClick={handleClose}><IoCloseOutline /></Close>
             <PlayerNickName>"{nickname}"</PlayerNickName>
         </Hero>
@@ -175,12 +186,20 @@ function Portal({ portalState, setPortalState, portalContext, setPortalContext }
         </PlayerInfo>
         <InfoSection className="info">
             <div>
-                <Eyebrow>Hometown</Eyebrow>
+                <Eyebrow2>Hometown</Eyebrow2>
                 <p>{hometown}</p>
             </div>
             <div>
-                <Eyebrow>Fun Fact</Eyebrow>
+                <Eyebrow2>Fun Fact</Eyebrow2>
                 <p>{fun_fact}</p>
+            </div>
+            <div>
+                <Eyebrow2>Walk Up Music</Eyebrow2>
+                <p>{walkUpMusicName}</p>
+                <ReactAudioPlayer
+                    src={walkUpMusicSRC}
+                    controls
+                />
             </div>
         </InfoSection>
         <VideoSection className="videos">

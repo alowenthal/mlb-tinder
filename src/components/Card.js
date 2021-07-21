@@ -97,6 +97,7 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
           age: person.currentAge,
           birthday: person.birthDate,
           funImage: player.gsx$imagesrc.$t,
+          gif: player.gsx$gifsrc.$t,
           walkUpMusic: {
             name: player.gsx$walkupsong.$t,
             src: player.gsx$walkupsongsrc.$t,
@@ -141,7 +142,8 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
       walkUpMusicName: info.walkUpMusic.name,
       walkUpMusicSRC: info.walkUpMusic.src,
       twitter: info.social.twitter,
-      instagram: info.social.instagram
+      instagram: info.social.instagram,
+      gif: info.gif
     });
   }
 
