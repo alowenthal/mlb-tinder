@@ -24,11 +24,27 @@ const Logo = styled.img`
   max-width: 250px;
 `;
 
+const Congrats = styled.div`
+  color: #ffffff;
+  padding: 1rem;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+`;
+
 function App() {
   const [available, setAvailable] = useState([]);
   const [mySelections, setMySelections] = useState([]);
   const [portalState, setPortalState] = useState(false);
   const [portalContext, setPortalContext] = useState({});
+  const [complete, setComplete] = useState(false);
+
+  useEffect(() => {
+    if (mySelections.length >= 5) {
+      setComplete(true);
+      setAvailable([]);
+    }
+  }, [mySelections]);
 
   useEffect(() => {
     fetch("https://spreadsheets.google.com/feeds/list/1uA4DvmZ3UXF7K9rjS1L1RKaQd8LE298EEZ-oUvm1WO4/od6/public/values?alt=json")
@@ -44,7 +60,7 @@ function App() {
         <Logo src="https://assets.codepen.io/7022/on_deck_logo_small.png" />
       </Header>
       <MyPicks mySelections={mySelections} />
-      <Cards 
+      {!complete && <Cards 
         available={available} 
         setAvailable={setAvailable} 
         mySelections={mySelections} 
@@ -52,7 +68,8 @@ function App() {
         setPortalState={setPortalState} 
         portalContext={portalContext} 
         setPortalContext={setPortalContext}
-      />
+      />}
+      {complete && <Congrats>Congrats your picks are in!</Congrats>}
       <Portal 
         portalState={portalState} 
         setPortalState={setPortalState} 

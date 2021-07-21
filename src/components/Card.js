@@ -10,7 +10,6 @@ const CardContainer = styled.div`
   height: 70vh;
   background: #333333;
   color: #ffffff;
-  padding-bottom: 40px;
   overflow: hidden;
   position: absolute;
   will-change: transform;
@@ -52,7 +51,6 @@ const CardPosition = styled.div`
 `;
 
 const CardActions = styled.div`
-  margin-top: 1rem;
   display: flex;
   justify-content: center;
 `;
