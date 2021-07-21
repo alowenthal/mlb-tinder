@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/mlb-tinder/static/css/main.5e7c9bd2.chunk.css",
-    "main.js": "/mlb-tinder/static/js/main.f43929bd.chunk.js",
-    "main.js.map": "/mlb-tinder/static/js/main.f43929bd.chunk.js.map",
-    "runtime-main.js": "/mlb-tinder/static/js/runtime-main.9197a19a.js",
-    "runtime-main.js.map": "/mlb-tinder/static/js/runtime-main.9197a19a.js.map",
-    "static/js/2.0555d22c.chunk.js": "/mlb-tinder/static/js/2.0555d22c.chunk.js",
-    "static/js/2.0555d22c.chunk.js.map": "/mlb-tinder/static/js/2.0555d22c.chunk.js.map",
-    "static/js/3.243a7ea4.chunk.js": "/mlb-tinder/static/js/3.243a7ea4.chunk.js",
-    "static/js/3.243a7ea4.chunk.js.map": "/mlb-tinder/static/js/3.243a7ea4.chunk.js.map",
+    "main.js": "/mlb-tinder/static/js/main.8fd23ca4.chunk.js",
+    "main.js.map": "/mlb-tinder/static/js/main.8fd23ca4.chunk.js.map",
+    "runtime-main.js": "/mlb-tinder/static/js/runtime-main.28a394a0.js",
+    "runtime-main.js.map": "/mlb-tinder/static/js/runtime-main.28a394a0.js.map",
+    "static/js/2.ce512a8f.chunk.js": "/mlb-tinder/static/js/2.ce512a8f.chunk.js",
+    "static/js/2.ce512a8f.chunk.js.map": "/mlb-tinder/static/js/2.ce512a8f.chunk.js.map",
+    "static/js/3.9a9b5375.chunk.js": "/mlb-tinder/static/js/3.9a9b5375.chunk.js",
+    "static/js/3.9a9b5375.chunk.js.map": "/mlb-tinder/static/js/3.9a9b5375.chunk.js.map",
     "index.html": "/mlb-tinder/index.html",
     "static/css/main.5e7c9bd2.chunk.css.map": "/mlb-tinder/static/css/main.5e7c9bd2.chunk.css.map",
-    "static/js/2.0555d22c.chunk.js.LICENSE.txt": "/mlb-tinder/static/js/2.0555d22c.chunk.js.LICENSE.txt"
+    "static/js/2.ce512a8f.chunk.js.LICENSE.txt": "/mlb-tinder/static/js/2.ce512a8f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.9197a19a.js",
-    "static/js/2.0555d22c.chunk.js",
+    "static/js/runtime-main.28a394a0.js",
+    "static/js/2.ce512a8f.chunk.js",
     "static/css/main.5e7c9bd2.chunk.css",
-    "static/js/main.f43929bd.chunk.js"
+    "static/js/main.8fd23ca4.chunk.js"
   ]
 }
