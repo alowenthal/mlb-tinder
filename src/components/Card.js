@@ -108,21 +108,22 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
           } : ''
         });
       });
-  }, [info]);
+  }, []);
 
-  function handleYes() {
-    setMySelections(mySelections => [...mySelections, id]);
-
+  function removeFromAvailablePlayers(id) {
     const updatedAvailable = available.filter((obj) => obj.gsx$playerid.$t !== id);
     setAvailable(updatedAvailable);
+  }
+
+  function handleYes() {
+    removeFromAvailablePlayers(id);
+    setMySelections(mySelections => [...mySelections, id]);
     console.log(available)
   }
 
   function handleNo() {
-    const updatedAvailable = available.filter((obj) => obj.gsx$playerid.$t !== id);
-    setAvailable(updatedAvailable);
+    removeFromAvailablePlayers(id);
     console.log(available)
-
   }
 
   function handleOpen() {
@@ -157,7 +158,6 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
     console.log('You swiped: ' + direction);
 
     if (direction === 'left') {
-      console.log(id)
       handleNo();
     } else {
       handleYes();
@@ -166,7 +166,7 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
 
   return (
     <CardContainer>
-      <TinderCard onSwipe={onSwipe} >
+      <TinderCard onSwipe={onSwipe} preventSwipe={['up', 'down']}>
         <CardMedia 
           img={info.funImage}
           onClick={handleOpen}
