@@ -13,6 +13,7 @@ const Dialog = styled.dialog`
     border: none;
     padding: 0rem;
     background: #133452;
+    position: fixed;
 
     &[open] {
         display: flex;
