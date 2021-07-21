@@ -12,6 +12,8 @@ const VideosContainer = styled.div`
 
 const Video = styled.div`
 	background-image: url(${props => props.src});
+	background-size: cover;
+    background-position: center;
 	margin-right: 1rem;
 	min-width: 283px;
 	width: 283px;
@@ -32,7 +34,7 @@ const PlayButton = styled.button`
 	background: none;
 	border: none;
 	font-size: 36px;
-	color: #AA63EA;
+	color: #057aff;
 `;
 
 function Videos({ id }) {

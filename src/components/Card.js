@@ -10,7 +10,6 @@ const CardContainer = styled.div`
   height: 70vh;
   background: #333333;
   color: #ffffff;
-  padding-bottom: 40px;
   overflow: hidden;
   position: absolute;
   will-change: transform;
@@ -52,7 +51,6 @@ const CardPosition = styled.div`
 `;
 
 const CardActions = styled.div`
-  margin-top: 1rem;
   display: flex;
   justify-content: center;
 `;
@@ -97,6 +95,7 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
           age: person.currentAge,
           birthday: person.birthDate,
           funImage: player.gsx$imagesrc.$t,
+          gif: player.gsx$gifsrc.$t,
           walkUpMusic: {
             name: player.gsx$walkupsong.$t,
             src: player.gsx$walkupsongsrc.$t,
@@ -141,7 +140,8 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
       walkUpMusicName: info.walkUpMusic.name,
       walkUpMusicSRC: info.walkUpMusic.src,
       twitter: info.social.twitter,
-      instagram: info.social.instagram
+      instagram: info.social.instagram,
+      gif: info.gif
     });
   }
 
