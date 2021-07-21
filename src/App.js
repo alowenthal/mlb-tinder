@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { players } from './data/players';
 import MyPicks from './components/MyPicks';
 import Cards from './components/Cards';
 import Portal from './components/Portal';

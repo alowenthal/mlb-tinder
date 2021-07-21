@@ -84,7 +84,7 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
         const person = data.people[0];
         const player = available.filter((obj) => obj.gsx$playerid.$t === id)[0];
         setInfo({
-          name: person.useName + " " + person.lastName,
+          name: player.gsx$playername.$t,
           nickname: player.gsx$nickname.$t,
           team: person.currentTeam.name,
           teamID: person.currentTeam.id,
@@ -112,18 +112,17 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
 
   function removeFromAvailablePlayers(id) {
     const updatedAvailable = available.filter((obj) => obj.gsx$playerid.$t !== id);
+    available.pop()
     setAvailable(updatedAvailable);
   }
 
   function handleYes() {
     removeFromAvailablePlayers(id);
     setMySelections(mySelections => [...mySelections, id]);
-    console.log(available)
   }
 
   function handleNo() {
     removeFromAvailablePlayers(id);
-    console.log(available)
   }
 
   function handleOpen() {
@@ -159,14 +158,14 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
 
     if (direction === 'left') {
       handleNo();
-    } else {
+    } else if (direction === 'right') {
       handleYes();
     }
   }
 
   return (
     <CardContainer>
-      <TinderCard onSwipe={onSwipe} preventSwipe={['up', 'down']}>
+      <TinderCard className='swipe' onSwipe={onSwipe} key={id} preventSwipe={['up', 'down']}>
         <CardMedia 
           img={info.funImage}
           onClick={handleOpen}
