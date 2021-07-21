@@ -16,9 +16,6 @@ const CardContainer = styled.div`
   position: absolute;
   will-change: transform;
   transition: all 0.3s ease-in-out;
-  cursor: -webkit-grab;
-  cursor: -moz-grab;
-  cursor: grab;
 `;
 
 const CardMedia = styled.div`
@@ -61,6 +58,7 @@ const CardActions = styled.div`
 const CardButton = styled.button`
   padding: 1rem;
   margin: 1rem;
+  margin-top: -12px;
   background: none;
   border: none;
   font-size: 72px;
@@ -166,18 +164,15 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
   return (
     <CardContainer>
       <TinderCard className='swipe' onSwipe={onSwipe} key={id} preventSwipe={['up', 'down']}>
-        <CardMedia 
-          img={info.funImage}
-          onClick={handleOpen}
-        />
+        <CardMedia img={info.funImage} onTouchEnd={handleOpen} onClick={handleOpen} />
         <CardMeta>
           <CardTitle>{info.name}</CardTitle>
           <CardSecondary>{info.team}</CardSecondary>
           <CardPosition>{info.position}</CardPosition>
         </CardMeta>
         <CardActions>
-          <CardButton onClick={handleNo} className="no"><IoCloseOutline /></CardButton>
-          <CardButton onClick={handleYes} className="yes"><IoHeartSharp /></CardButton>
+          <CardButton onClick={handleNo} onTouchEnd={handleNo} className="no"><IoCloseOutline /></CardButton>
+          <CardButton onClick={handleYes} onTouchEnd={handleYes} className="yes"><IoHeartSharp /></CardButton>
         </CardActions>
       </TinderCard>
     </CardContainer>
