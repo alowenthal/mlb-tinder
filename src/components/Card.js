@@ -21,7 +21,7 @@ const CardContainer = styled.div`
   cursor: grab;
 `;
 
-const CardMedia = styled.img`
+const CardMedia = styled.div`
   background: #f8f8f8;
   background-image: url(${props => props.img});
   background-position: center;

@@ -9,17 +9,17 @@ const Dialog = styled.dialog`
     width: 100vw;
     z-index: 10000;
     overflow-y: auto;
-    top: 0;
     border: none;
     padding: 0rem;
     background: #133452;
+    position: fixed;
 
     &[open] {
         display: flex;
         flex-flow: column wrap;
         align-items: flex-start;
         padding-bottom: 5rem;
-
+        top: 0;
         -webkit-animation: reveal 0.2s ease;
 	    -webkit-animation-fill-mode: backwards;
     }
