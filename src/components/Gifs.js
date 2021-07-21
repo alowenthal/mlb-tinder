@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { IoPlayCircle } from 'react-icons/io5';
 
-const VideosContainer = styled.div`
+const GifsContainer = styled.div`
 	display: flex;
     flex-flow: row nowrap;
     overflow-x: auto;
@@ -10,7 +10,7 @@ const VideosContainer = styled.div`
     padding: 0px 1rem;
 `;
 
-const Video = styled.a`
+const Gif = styled.div`
 	background-image: url(${props => props.src});
 	background-size: cover;
     background-position: center;
@@ -37,32 +37,30 @@ const PlayButton = styled.button`
 	color: #ffffff;
 `;
 
-function Videos({ id }) {
-	const [videos, setVideos] = useState([]);
+function Gifs({ id }) {
+	const [gifs, setGifs] = useState([]);
 
 	useEffect(() => {
-		fetch(`https://dapi.cms.mlbinfra.com/v2/content/en-us/videos?tags.slug=playerid-${id}&$limit=6`)
+		fetch(`https://dapi.cms.mlbinfra.com/v2/content/en-us/photos?tags.slug=playerid-${id}&fields.photoType=Animated%20GIF`)
 			.then(response => response.json())
 			.then(data => {
-				const videos = data.items;
-				setVideos([...videos]);
+				const gifs = data.items.filter((gif) => gif.image.format === 'gif');
+				setGifs([...gifs]);
 			});
-	}, [videos]);
+	}, [gifs]);
 
-	const vids = videos.map((vid, i) => {
-		const src = vid.thumbnail.templateUrl.replace('{formatInstructions}', 't_16x9/t_w640');
+	const vids = gifs.map((gif, i) => {
+		const src = gif.image.templateUrl.replace('{formatInstructions}', 't_16x9/t_w640');
 		return (
-			<Video key={i} src={src} href={`https://www.mlb.com/video/${vid.slug}`} target="_blank">
-				<PlayButton><IoPlayCircle /></PlayButton>
-			</Video>
+			<Gif key={i} src={src} />
 		)
 	})
 
 	return (
-		<VideosContainer>
+		<GifsContainer>
 			{vids}
-		</VideosContainer>
+		</GifsContainer>
 	);
 }
 
-export default Videos;
+export default Gifs;
