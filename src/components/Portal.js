@@ -5,6 +5,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import { FaInstagram, FaTwitter } from 'react-icons/fa';
 import { IoCloseOutline } from 'react-icons/io5';
 import Videos from './Videos';
+import Gifs from './Gifs';
 
 const Dialog = styled.dialog`
     width: 100vw;
@@ -12,8 +13,10 @@ const Dialog = styled.dialog`
     overflow-y: auto;
     border: none;
     padding: 0rem;
-    background: #133452;
+    background: #333333;
+    background-image: linear-gradient(to bottom, #13a2be, #25306c, #1f2153);
     position: absolute;
+    opacity: 0;
 
     &[open] {
         display: flex;
@@ -21,6 +24,7 @@ const Dialog = styled.dialog`
         align-items: flex-start;
         padding-bottom: 5rem;
         top: 0;
+        opacity: 1;
 
         -webkit-animation: reveal 0.2s ease;
 	    -webkit-animation-fill-mode: backwards;
@@ -196,15 +200,15 @@ function Portal({ portalState, setPortalState, portalContext, setPortalContext }
             <div>
                 <Eyebrow2>Walk Up Music</Eyebrow2>
                 <p>{walkUpMusicName}</p>
-                <ReactAudioPlayer
-                    src={walkUpMusicSRC}
-                    controls
-                />
             </div>
         </InfoSection>
         <VideoSection className="videos">
             <h2>Videos</h2>
             <Videos id={id} />
+        </VideoSection>
+        <VideoSection className="gifs">
+            <h2>GIFY</h2>
+            <Gifs id={id} />
         </VideoSection>
     </Dialog>,
     document.getElementById('portal-root')

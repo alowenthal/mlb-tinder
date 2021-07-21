@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import '../index.css';
-import { IoCloseOutline, IoHeartSharp } from 'react-icons/io5';
+import { IoCloseCircleSharp, IoHeartSharp } from 'react-icons/io5';
 
 const CardContainer = styled.div`
   display: inline-block;
   width: 90vw;
   max-width: 400px;
   height: 70vh;
-  background: #333333;
   color: #ffffff;
   overflow: hidden;
   position: absolute;
@@ -28,6 +27,7 @@ const CardMedia = styled.div`
   height: 300px;
   width: 100%;
   border-radius: 6px;
+  position: relative;
 `;
 
 const CardMeta = styled.div`
@@ -35,19 +35,20 @@ const CardMeta = styled.div`
 `;
 
 const CardTitle = styled.div`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
-  pointer-events: none;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  text-shadow: 1px 3px 3px #000000;
 `;
 
-const CardSecondary = styled.div`
-  font-size: 16px;
-  font-weight: 400;
-`;
-
-const CardPosition = styled.div`
-  font-size: 16px;
-  font-weight: 400;
+const CardTeamLogo = styled.img`
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  max-height: 40px;
+  max-width: 40px;
 `;
 
 const CardActions = styled.div`
@@ -61,6 +62,13 @@ const CardButton = styled.button`
   background: none;
   border: none;
   font-size: 72px;
+  color: #2ed573;
+  background: white;
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
 
   &.no {
     color: #ff4757;
@@ -154,14 +162,14 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
       <CardMedia 
         img={info.funImage}
         onClick={handleOpen}
-      />
-      <CardMeta>
+      >
         <CardTitle>{info.name}</CardTitle>
-        <CardSecondary>{info.team}</CardSecondary>
-        <CardPosition>{info.position}</CardPosition>
+        <CardTeamLogo src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_64,h_64,c_pad/u_team:${info.teamID}:fill:spot,ar_1:1,w_100/r_max,f_png,q_auto:best/v1/team/${info.teamID}/logo/spot/current`} />
+      </CardMedia>
+      <CardMeta>
       </CardMeta>
       <CardActions>
-        <CardButton onClick={handleNo} className="no"><IoCloseOutline /></CardButton>
+        <CardButton onClick={handleNo} className="no"><IoCloseCircleSharp /></CardButton>
         <CardButton onClick={handleYes} className="yes"><IoHeartSharp /></CardButton>
       </CardActions>
     </CardContainer>

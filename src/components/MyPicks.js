@@ -13,7 +13,8 @@ const PickMedia = styled.img`
 	width: 60px;
 	pointer-events: none;
 	display: inline-block;
-	border: 2px solid #AA63EA;
+	border: 2px solid #40DAF9;
+	background: white;
 
 	-webkit-animation: reveal 0.6s ease;
 	-webkit-animation-fill-mode: backwards;

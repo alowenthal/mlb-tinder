@@ -4,11 +4,10 @@ import Card from './Card';
 
 const CardsContainer = styled.div`
   flex-grow: 1;
-  padding-top: 40px;
   text-align: center;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   z-index: 1;
 `;
 
