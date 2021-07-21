@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { PortalWithState } from 'react-portal';
+import '../index.css';
+import { IoCloseOutline, IoHeartSharp } from 'react-icons/io5';
 
 const CardContainer = styled.div`
   display: inline-block;
   width: 90vw;
   max-width: 400px;
   height: 70vh;
-  background: #FFFFFF;
+  background: #333333;
+  color: #ffffff;
   padding-bottom: 40px;
-  border-radius: 8px;
   overflow: hidden;
   position: absolute;
   will-change: transform;
@@ -19,8 +20,15 @@ const CardContainer = styled.div`
   cursor: grab;
 `;
 
-const CardMedia = styled.img`
-  max-width: 100%;
+const CardMedia = styled.div`
+  background: #f8f8f8;
+  background-image: url(${props => props.img});
+  background-position: center;
+  background-size: cover;
+  display: block;
+  height: 300px;
+  width: 100%;
+  border-radius: 6px;
 `;
 
 const CardMeta = styled.div`
@@ -52,25 +60,51 @@ const CardActions = styled.div`
 const CardButton = styled.button`
   padding: 1rem;
   margin: 1rem;
+  background: none;
+  border: none;
+  font-size: 72px;
+
+  &.no {
+    color: #ff4757;
+  }
+
+  &.yes {
+    color: #2ed573;
+  }
 `;
 
 function Card({id, available, setAvailable, mySelections, setMySelections, setPortalState, portalContext, setPortalContext}) {
   const [info, setInfo] = useState({});
 
   useEffect(() => {
-    fetch(`https://statsapi.mlb.com/api/v1/people/${id}?hydrate=currentTeam`)
+    fetch(`https://statsapi.mlb.com/api/v1/people/${id}?hydrate=currentTeam,social`)
       .then(response => response.json())
       .then(data => {
         const person = data.people[0];
+        const player = available.filter((obj) => obj.gsx$playerid.$t === id)[0];
         setInfo({
           name: person.useName + " " + person.lastName,
+          nickname: player.gsx$nickname.$t,
           team: person.currentTeam.name,
+          teamID: person.currentTeam.id,
           position: person.primaryPosition.name,
           number: person.primaryNumber,
           country: person.birthCountry,
+          hometown: player.gsx$hometown.$t,
+          fun_fact: player.gsx$funfact.$t,
           height: person.height,
           weight: person.weight,
-          age: person.age
+          age: person.currentAge,
+          birthday: person.birthDate,
+          funImage: player.gsx$imagesrc.$t,
+          walkUpMusic: {
+            name: player.gsx$walkupsong.$t,
+            src: player.gsx$walkupsongsrc.$t,
+          },
+          social: person.social ? {
+            twitter: person.social.twitter ? person.social.twitter[0] : '',
+            instagram: person.social.instagram ? person.social.instagram[0] : ''
+          } : ''
         });
       });
   }, [info]);
@@ -92,13 +126,22 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
     setPortalContext({
       id,
       name: info.name,
+      nickname: info.nickname,
       team: info.team,
+      teamID: info.teamID,
       position: info.position,
       number: info.number,
       country: info.country,
+      hometown: info.hometown,
+      fun_fact: info.fun_fact,
       height: info.height,
       weight: info.weight,
-      age: info.age
+      age: info.age,
+      birthday: info.birthday,
+      walkUpMusicName: info.walkUpMusic.name,
+      walkUpMusicSRC: info.walkUpMusic.src,
+      twitter: info.social.twitter,
+      instagram: info.social.instagram
     });
   }
 
@@ -109,9 +152,8 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
   return (
     <CardContainer>
       <CardMedia 
-        src={`https://img.mlbstatic.com/mlb-photos/image/upload/w_240,h_382,g_auto,c_fill,q_auto:best/v1/people/${id}/action/vertical/current`}
-        onClick={handleOpen} 
-        onError={handleError}
+        img={info.funImage}
+        onClick={handleOpen}
       />
       <CardMeta>
         <CardTitle>{info.name}</CardTitle>
@@ -119,8 +161,8 @@ function Card({id, available, setAvailable, mySelections, setMySelections, setPo
         <CardPosition>{info.position}</CardPosition>
       </CardMeta>
       <CardActions>
-        <CardButton onClick={handleNo}>No</CardButton>
-        <CardButton onClick={handleYes}>Yes</CardButton>
+        <CardButton onClick={handleNo} className="no"><IoCloseOutline /></CardButton>
+        <CardButton onClick={handleYes} className="yes"><IoHeartSharp /></CardButton>
       </CardActions>
     </CardContainer>
   );

@@ -13,6 +13,15 @@ const AppContainer = styled.div`
   flex-direction: column;
   position: relative;
   transition: opacity 0.1s ease-in-out;
+  background: #333333;
+`;
+
+const Header = styled.div`
+  padding: 1rem;
+  text-align: center;
+`;
+const Logo = styled.img`
+  max-width: 250px;
 `;
 
 function App() {
@@ -31,6 +40,9 @@ function App() {
 
   return (
     <AppContainer>
+      <Header>
+        <Logo src="https://assets.codepen.io/7022/on_deck_logo_small.png" />
+      </Header>
       <MyPicks mySelections={mySelections} />
       <Cards 
         available={available} 
