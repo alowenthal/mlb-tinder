@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/mlb-tinder/static/css/main.5e7c9bd2.chunk.css",
-    "main.js": "/mlb-tinder/static/js/main.884b1e16.chunk.js",
-    "main.js.map": "/mlb-tinder/static/js/main.884b1e16.chunk.js.map",
+    "main.js": "/mlb-tinder/static/js/main.f43929bd.chunk.js",
+    "main.js.map": "/mlb-tinder/static/js/main.f43929bd.chunk.js.map",
     "runtime-main.js": "/mlb-tinder/static/js/runtime-main.9197a19a.js",
     "runtime-main.js.map": "/mlb-tinder/static/js/runtime-main.9197a19a.js.map",
     "static/js/2.0555d22c.chunk.js": "/mlb-tinder/static/js/2.0555d22c.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.9197a19a.js",
     "static/js/2.0555d22c.chunk.js",
     "static/css/main.5e7c9bd2.chunk.css",
-    "static/js/main.884b1e16.chunk.js"
+    "static/js/main.f43929bd.chunk.js"
   ]
 }
